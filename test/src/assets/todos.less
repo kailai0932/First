@@ -1,0 +1,109 @@
+@input_color: #e6e6e6;
+@input_font_weight:300;
+
+.todos{
+    margin: 0;
+    list-style-type: none;
+    padding: 0 20px;
+    border-top: 1px solid #ccc;
+    background: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 10px 30px #ccc;
+    position: relative;
+
+    //我需要写这个类名下面的其他样式的话
+    & >li{ //这里说明todos类名下载的所有子元素  
+        cursor: pointer;
+        font-size: 24px;
+        line-height: 36px;
+        padding: 12px 0;
+        border-bottom: 1px solid #ededed;
+        position: relative;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        &:first-child > input {
+            font-size: 24px;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            background: transparent;
+        }
+
+        & > input[type=checkbox] {
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+            width: 40px;
+            height: auto;
+            position: absolute;
+            top: 10px;
+            bottom: 0;
+            margin: auto 0;
+            border: none;
+            -webkit-appearance: none;
+            appearance: none;
+            &:after {
+                content: url(@checkbox_img);
+            }
+        }
+        & > time{
+            position: absolute;
+            right: 60px;
+            top: 15px;
+            font-size: 9pt;
+        }
+        & > label {
+            display: block;
+            vertical-align: middle;
+            padding-left: 50px;
+            letter-spacing: 2;
+        }
+
+        & > button {
+        position: absolute;
+        right: 5px;
+        top: 15px;
+        height: 30px;
+        width: 30px;
+        border: none;
+        background: none;
+        display: none;
+        &:after, &:before {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 0;
+            transform: rotateZ(45deg);
+            height: 1px;
+            width: 30px;
+            background: #cc9a9a;
+        }
+        &:before {
+            transform: rotateZ(-45deg);
+        }
+
+        }
+
+        &.checked {
+            & > input[type=checkbox] {
+                &:after {
+                content: url(@checkbox_checked_img);
+                }
+            }
+
+            & > label {
+                color: #d9d9d9;
+                text-decoration: line-through;
+            }
+        }
+
+        &:hover {
+            & > button {
+                display: block;
+            }
+        }
+    }
+}
